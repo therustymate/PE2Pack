@@ -141,8 +141,7 @@ static BOOL resolve_iat(PE_CONTEXT *ctx) {
         }
 
         IMAGE_THUNK_DATA64 *thunk = (IMAGE_THUNK_DATA64 *)(ctx->base + import_desc->FirstThunk);
-        IMAGE_THUNK_DATA64 *original_thunk = import_desc->OriginalFirstThunk ?
-            (IMAGE_THUNK_DATA64 *)(ctx->base + import_desc->OriginalFirstThunk) : thunk;
+        IMAGE_THUNK_DATA64 *original_thunk = import_desc->OriginalFirstThunk ? (IMAGE_THUNK_DATA64 *)(ctx->base + import_desc->OriginalFirstThunk) : thunk;
 
         for (; original_thunk->u1.AddressOfData; thunk++, original_thunk++) {
             if (IMAGE_SNAP_BY_ORDINAL64(original_thunk->u1.Ordinal)) {
